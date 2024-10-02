@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+
+<body>
+    <div id="navbar"></div>
+    <div class="user-profile-container">
+        <h1 class="user-profile-title">User Profile</h1>
+        <div id="userInfo" class="user-profile-info"></div> <!-- Hiển thị thông tin người dùng -->
+
+        <button class="user-profile-button" id="editNameBtn">Edit Name</button>
+        <button class="user-profile-button" id="editEmailBtn">Edit Email</button>
+        <button class="user-profile-button" id="changePasswordBtn">Change Password</button>
+
+        <!-- Modal cho sửa tên -->
+        <div id="editNameModal" class="user-profile-modal">
+            <div class="user-profile-modal-content">
+                <span class="user-profile-close" id="closeNameModal">&times;</span>
+                <h2 class="user-profile-modal-title">Edit Name</h2>
+                <input type="text" id="newUserName" class="user-profile-input" placeholder="Enter new name">
+                <button class="user-profile-save-button" id="saveNameBtn">Save</button>
+            </div>
+        </div>
+
+        <!-- Modal cho sửa email -->
+        <div id="editEmailModal" class="user-profile-modal">
+            <div class="user-profile-modal-content">
+                <span class="user-profile-close" id="closeEmailModal">&times;</span>
+                <h2 class="user-profile-modal-title">Edit Email</h2>
+                <input type="email" id="newUserEmail" class="user-profile-input" placeholder="Enter new email">
+                <button class="user-profile-save-button" id="saveEmailBtn">Save</button>
+            </div>
+        </div>
+
+        <!-- Modal cho đổi mật khẩu -->
+        <div id="changePasswordModal" class="user-profile-modal">
+            <div class="user-profile-modal-content">
+                <span class="user-profile-close" id="closePasswordModal">&times;</span>
+                <h2 class="user-profile-modal-title">Change Password</h2>
+                <input type="password" id="currentUserPassword" class="user-profile-input"
+                    placeholder="Current Password">
+                <input type="password" id="newUserPassword" class="user-profile-input" placeholder="New Password">
+                <button class="user-profile-save-button" id="savePasswordBtn">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+    <script type="module" src="js/profile.js"></script>
+</body>
+
+</html>

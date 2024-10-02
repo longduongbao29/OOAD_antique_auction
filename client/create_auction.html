@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Auction</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Create Auction</h1>
+        <form id="createAuctionForm">
+            <input type="text" id="artifactName" placeholder="Artifact Name" required>
+            <input type="text" id="description" placeholder="Description" required>
+            <input type="number" id="startingBid" placeholder="Starting Bid" required>
+            <input type="datetime-local" id="endTime" required>
+            <button type="submit">Create Auction</button>
+        </form>
+        <button id="backButton">Back to Dashboard</button>
+    </div>
+    <script src="js/create-auction.js"></script>
+</body>
+
+</html>
