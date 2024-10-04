@@ -4,23 +4,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Auction</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Create Auction Product</title>
+    <link rel="stylesheet" href="css/create_auction.css">
 </head>
 
 <body>
+    <div id="navbar"></div>
     <div class="container">
-        <h1>Create Auction</h1>
-        <form id="createAuctionForm">
-            <input type="text" id="artifactName" placeholder="Artifact Name" required>
-            <input type="text" id="description" placeholder="Description" required>
-            <input type="number" id="startingBid" placeholder="Starting Bid" required>
-            <input type="datetime-local" id="endTime" required>
-            <button type="submit">Create Auction</button>
+        <h1>Create Auction Product</h1>
+        <form id="auctionForm">
+            <div class="form-row">
+                <div class="column">
+                    <div class="form-group">
+                        <label for="name">Product Name:</label>
+                        <input type="text" id="name" name="name" maxlength="255" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea id="description" name="description" maxlength="255"></textarea>
+                    </div>
+
+                    
+
+                    <div class="form-group">
+                        <label for="time_start">Start Time:</label>
+                        <input type="datetime-local" id="time_start" name="time_start" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="time_end">End Time:</label>
+                        <input type="datetime-local" id="time_end" name="time_end" required>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="form-group">
+                        <label for="initial_bid">Initial Bid:</label>
+                        <input type="number" id="initial_bid" name="initial_bid" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="step_bid_in_price">Step Bid in Price:</label>
+                        <input type="number" id="step_bid_in_price" name="step_bid_in_price" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="step_bid_in_time">Step Bid in Time (minutes):</label>
+                        <input type="number" id="step_bid_in_time" name="step_bid_in_time" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="image_url">Image URL:</label>
+                        <input type="text" id="image_url" name="image_url" maxlength="255" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Image Preview:</label>
+                        <img id="imagePreview" src="" alt="Image Preview">
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit">Create Product</button>
         </form>
-        <button id="backButton">Back to Dashboard</button>
     </div>
-    <script src="js/create-auction.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+    <script type="module" src="js/create_auction.js"></script>
 </body>
 
 </html>
