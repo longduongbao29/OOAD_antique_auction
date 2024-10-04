@@ -7,7 +7,7 @@ function updateUserName(token, newName) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}` // Sử dụng token nếu cần
+            'Authorization': `${token}` // Sử dụng token nếu cần
         },
         body: JSON.stringify({ name: newName })
     })

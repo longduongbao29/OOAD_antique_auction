@@ -4,24 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Login</title>
     <link rel="stylesheet" href="css/login_register.css">
 </head>
 
 <body>
     <div class="container">
-        <h1>Register</h1>
-        <form id="registerForm">
-            <input type="text" id="name" placeholder="Name" required>
-            <input type="email" id="email" placeholder="Email" required>
+        <h1>Login</h1>
+        <form id="loginForm">
+            <input id="email" placeholder="Email" required>
             <input type="password" id="password" placeholder="Password" required>
-            <select id="role" required>
-                <option value="buyer">Buyer</option>
-                <option value="seller">Seller</option>
-            </select>
-            <button id="submit" type="submit">Register</button>
+            <button id="submit" type="submit">Login</button>
         </form>
-        <p>Already have an account? <a href="login.html">Login here</a></p>
+        <p>Don't have an account? <a href="register.html">Register here</a></p>
     </div>
     <script src="js/auth.js"></script>
 </body>

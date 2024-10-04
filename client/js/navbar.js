@@ -14,7 +14,7 @@ function setupNavbar() {
     const token = localStorage.getItem('token');
     if (!token) {
         alert('You are not logged in. Please log in.');
-        window.location.href = 'login.html';
+        window.location.href = 'index.html';
     } else {
         const user = jwt_decode(token);
 
@@ -22,7 +22,7 @@ function setupNavbar() {
         document.getElementById('logoutButton').addEventListener('click', () => {
             localStorage.removeItem('token');
             alert('You have been logged out.');
-            window.location.href = 'login.html';
+            window.location.href = 'index.html';
         });
     }
 }

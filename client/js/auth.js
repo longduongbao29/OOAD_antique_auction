@@ -28,7 +28,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
                 if (response.ok) {
                     alert('Registration successful!');
-                    window.location.href = 'login.html';
+                    window.location.href = 'index.html';
                 } else {
                     alert(`Error: ${data.error}`);
                 }

@@ -2,29 +2,12 @@ const db = require('../config/db');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-// Đăng ký người dùng
-
-// Tạo token sau khi xác thực thành công
-function generateToken(user) {
-    const token = jwt.sign(
-        {
-            id: user.id,         // ID của người dùng
-            name: user.name,     // Tên của người dùng
-            email: user.email,   // Email của người dùng
-            role: user.role      // Vai trò (seller hoặc buyer)
-        },
-        process.env.JWT_SECRET,
-        { expiresIn: '1h' } // Token sẽ hết hạn sau 1 giờ
-    );
-    return token;
-}
-
 exports.register = (req, res) => {
     const { name, email, password, role } = req.body;
 
     // Kiểm tra xem email đã tồn tại chưa
     db.query('SELECT email FROM users WHERE email = ?', [email], (err, result) => {
-        if (err) return res.status(500).json({ error: 'Database error' });
+        if (err) return res.status(500).json({ error: 'Database error'+err });
 
         if (result.length > 0) {
             return res.status(400).json({ error: 'Email already exists' });
@@ -36,7 +19,7 @@ exports.register = (req, res) => {
         // Thêm người dùng vào database
         db.query('INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)',
             [name, email, hashedPassword, role], (err, result) => {
-                if (err) return res.status(500).json({ error: 'Database error' });
+                if (err) return res.status(500).json({ error: 'Database error' +err });
 
                 res.status(201).json({ message: 'User registered successfully' });
             });
@@ -45,12 +28,12 @@ exports.register = (req, res) => {
 // Đăng nhập người dùng
 exports.login = (req, res) => {
     const { email, password } = req.body;
-
+    
     // Kiểm tra người dùng trong database
     db.query('SELECT * FROM users WHERE email = ?', [email], (err, result) => {
-        if (err) return res.status(500).json({ error: 'Database error' });
-
-        if (result.length === 0) {
+        if (err) return res.status(500).json({ error: 'Database error'+err });
+        
+        if (result.length === 0 || !result) {
             return res.status(400).json({ error: 'User not found' });
         }
 
