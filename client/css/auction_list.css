@@ -14,6 +14,7 @@ body {
 h1 {
     text-align: center;
     margin-bottom: 30px;
+    margin-top: 100px;
 }
 
 .product-list {
@@ -68,6 +69,7 @@ h1 {
 
 .bid-btn {
     background-color: #28a745;
+    margin-bottom: 10px;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -79,6 +81,19 @@ h1 {
     /* Không co lại khi không đủ chỗ */
 }
 
+.delete-btn {
+    background-color: #ff0000;
+    margin-bottom: 10px;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    /* Chiếm toàn bộ chiều rộng */
+    flex-shrink: 0;
+    /* Không co lại khi không đủ chỗ */
+}
 .bid-btn:hover {
     background-color: #218838;
 }

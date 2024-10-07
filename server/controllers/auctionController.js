@@ -10,7 +10,7 @@ exports.getAllAuctions = (req, res) => {
 
 // Lấy danh sách đấu giá của seller
 exports.getSellerAuctions = (req, res) => {
-    db.query('SELECT * FROM auction_products WHERE user_id = ?', [req.user.id], (err, results) => {
+    db.query('SELECT * FROM auction_products WHERE owner_id = ?', [req.params.id], (err, results) => {
         if (err) return res.status(500).json({ error: 'Database error' });
         res.json(results);
     });
@@ -35,10 +35,10 @@ exports.getAuction = (req, res) => {
     });
 }
 
-exports.getByOwnerId = (req, res) => {
+exports.deleteAuction = (req, res) => {
     id = req.params.id;
-    db.query('SELECT * FROM auction_products WHERE owner_id = ?',[id], (err, results) => {
+    db.query('DELETE FROM auction_products WHERE id = ?', [id], (err, results) => {
         if (err) return res.status(500).json({ error: 'Database error' });
-        res.json(results[0]);
+        return res.json({message: "Delete"});
     });
 }

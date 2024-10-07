@@ -39,11 +39,10 @@ document.getElementById("auctionForm").addEventListener("submit", function(event
         body: JSON.stringify(auctionProduct),
         })
         .then(response => {
-            response.json(); 
-            alert(response)
+            alert("Create Successfully!")
         })
         .then(data => {
-            window.location.href = "dashboard.html"
+            window.location.href = "selling.html"
         })
         .catch(error => console.error('Error fetching products:', error));
     

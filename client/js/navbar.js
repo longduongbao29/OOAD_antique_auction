@@ -16,7 +16,7 @@ function setupNavbar() {
         alert('You are not logged in. Please log in.');
         window.location.href = 'index.html';
     } else {
-        const user = jwt_decode(token);
+       
 
 
         document.getElementById('logoutButton').addEventListener('click', () => {

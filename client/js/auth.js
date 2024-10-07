@@ -11,7 +11,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-            const role = document.getElementById('role').value;
+            const role = 'user';
 
             const payload = { name, email, password, role };
 
