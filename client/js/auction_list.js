@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 let endTime = new Date(product.time_end.replace("T"," ").replace("Z",""));
     
                 let timeDiff = endTime - currentTime;
-                console.log(startTime, currentTime, endTime);
+                // console.log(startTime, currentTime, endTime);
                 let time_remain;
                 
 

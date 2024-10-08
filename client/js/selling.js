@@ -67,7 +67,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     });
                 });
                 // Lấy tất cả các nút delete
-                const deleteButtons = document.querySelectorAll('.delete-btn');
+                
+            });
+
+               const deleteButtons = document.querySelectorAll('.delete-btn');
 
                 // Gắn sự kiện click cho mỗi nút
                 deleteButtons.forEach(button => {
@@ -78,13 +81,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     const confirmDelete = confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?');
 
                     if (confirmDelete) {
+                        console.log("delete");
+                        
                         delete_auctions(productId);
                         window.location.reload();
                     } 
                 });
-            });
-
-               
 
             });
         })

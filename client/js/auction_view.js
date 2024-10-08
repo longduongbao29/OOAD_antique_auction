@@ -1,6 +1,9 @@
 import { loadNavbar } from './navbar.js';
 
 const token = localStorage.getItem('token')
+const user = jwt_decode(token);
+console.log(user);
+
 document.addEventListener('DOMContentLoaded', function() {
     fetch(`http://localhost:3000/api/auctions/get/${window.localStorage.getItem('current_view_id')}`, {
         method: 'GET', // Hoặc 'POST' nếu bạn đang gửi dữ liệu
@@ -12,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             
-            
+      
             const productList = document.getElementById('auction-container');
             
             const productDiv = document.createElement('div');
@@ -37,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
             else {
                 time_remain = `Time remain: ${diffInDays}d ${diffInHours}h ${diffInMinutes}m`
             }
-            console.log(data);
+            // console.log(data);
             
             productDiv.innerHTML =
             `<div class="product-image">
@@ -63,12 +66,16 @@ document.addEventListener('DOMContentLoaded', function() {
             if (ended) {
                 bitSection.innerHTML = `<p>This auction ended!!!</p>`
             }
-            else {
+            else if (user.id != data.owner_id) 
+            {
                 bitSection.innerHTML = `<label for="bidAmount">Your Bid:</label>
                         <input type="number" id="bidAmount" min="${data.current_bid}" step="${data.step_bid_in_price}" placeholder="Enter your bid">
-                        <button onclick="placeBid()">Place Bid</button>`
+                        <button id="place-bid-btn">Place Bid</button>`
             }
-            
+            const placeBidBtn = document.getElementById("place-bid-btn");
+            placeBidBtn.addEventListener('click', function () {
+                placeBid(user.id , data.id, document.getElementById("bidAmount").value)
+            })
 
         })
         .catch(error => console.error('Error fetching products:', error));
@@ -78,4 +85,22 @@ document.addEventListener('DOMContentLoaded', function() {
     
 });
 
-
+function placeBid(user_id,auction_id, bid_price) {
+    const payload = { user_id, auction_id, bid_price };
+    console.log(payload);
+    
+    fetch(`http://localhost:3000/api/auctions/place_bid`, {
+        method: 'POST', // Hoặc 'POST' nếu bạn đang gửi dữ liệu
+        headers: {
+        'Authorization': `${token}`, // Thêm token vào headers
+        'Content-Type': 'application/json' // Nếu cần thiết
+        },
+        body: JSON.stringify(payload)
+        })
+        .then(response => response.json()).then(data => {
+            alert(data.message);
+            window.location.reload();
+        })
+        .catch(error => console.error('Error fetching products:', error));
+    
+}

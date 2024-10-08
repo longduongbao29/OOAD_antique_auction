@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "watch": "nodemon --delay 3000ms server.js"
+    "watch": "nodemon --delay 500ms server.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

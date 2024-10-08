@@ -9,7 +9,7 @@
         "js": "node --harmony"
     },
     "events": {
-        "restart": "sh -c 'npx kill-port 3000'"
+        "restart": "sh -c 'sudo lsof -i :3000'"
     },
     "watch": [
         "server/"

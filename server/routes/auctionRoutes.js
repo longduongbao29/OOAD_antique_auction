@@ -6,16 +6,15 @@ const { authenticateToken, authorizeRole } = require('../middlewares/authMiddlew
 // Lấy danh sách đấu giá cho buyer (toàn bộ đấu giá)
 router.get('/getall',authenticateToken, auctionController.getAllAuctions);
 router.get('/get/:id', authenticateToken, auctionController.getAuction)
-router.get('/getselling/:id',authenticateToken, auctionController.getSellerAuctions )
-
+router.get('/getselling/:id',authenticateToken, auctionController.getSelling )
+router.get('/getbuying/:id', authenticateToken, auctionController.getBuying)
 // Lấy danh sách đấu giá của seller
-router.get('/seller', authenticateToken, auctionController.getSellerAuctions);
 
-router.get('/delete_auction/:id', authenticateToken,auctionController.deleteAuction)
+router.put('/delete_auction/:id', authenticateToken,auctionController.deleteAuction)
 
 // Tạo đấu giá mới (chỉ seller)
 router.post('/create', authenticateToken, auctionController.createAuction);
 
-
+router.post('/place_bid', authenticateToken, auctionController.placeBid)
 
 module.exports = router;
