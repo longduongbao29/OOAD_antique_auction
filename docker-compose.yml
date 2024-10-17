@@ -1,0 +1,34 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+  db:
+    image: mysql:latest
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: ooad
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: adminpassword
+    ports:
+      - 3306:3306
+    networks:
+      - my_network
+    volumes:
+      - ./db_data/mysql:/var/lib/mysql
+  server:
+    image: ooad/server
+    container_name: server
+    environment:
+      JWT_SECRET: helloworld
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    networks:
+      - my_network
+    volumes:
+      - ./db_data:/home/node/app/database
+networks:
+  my_network:
+    driver: bridge

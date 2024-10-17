@@ -1,7 +1,7 @@
 const db = require('../config/db');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-
+const secretKey = process.env.JWT_SECRET
 exports.register = (req, res) => {
     const { name, email, password, role } = req.body;
 
@@ -44,7 +44,7 @@ exports.login = (req, res) => {
         if (!passwordIsValid) return res.status(401).json({ error: 'Invalid password' });
 
         // Tạo token
-        const token = jwt.sign({ id: user.id, role: user.role, email: user.email, name: user.name }, 'your_secret_key', { expiresIn: '1h' });
+        const token = jwt.sign({ id: user.id, role: user.role, email: user.email, name: user.name }, secretKey, { expiresIn: '1h' });
 
         res.status(200).json({ message: 'Login successful', token });
     });

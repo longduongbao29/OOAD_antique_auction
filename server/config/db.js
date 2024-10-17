@@ -1,47 +1,36 @@
 const mysql = require('mysql2');
 const fs = require('fs');
 const path = require('path');
-const { Script } = require('vm');
 // Tạo kết nối với database MySQL
 const db = mysql.createConnection({
-    host: 'localhost',
+    host: 'db',
     user: 'root',
     password: 'rootpassword',
+    port: 3306,
     database: 'ooad'
 });
-
-db.connect((err) => {
-    if (err) {
-        console.error('Database connection failed:', err);
-    } else {
-        console.log('Connected to MySQL Database');
-    }
-    
-    db.query('CREATE DATABASE IF NOT EXISTS ooad', (err) => {
+function connect_db() {
+    db.connect((err) => {
         if (err) {
-            console.error('Lỗi khi tạo database:', err);
-            return;
+            console.log('Error connecting to MySQL, retrying in 5 seconds...', err);
+            setTimeout(connect_db, 5000);
+        } else {
+            const sqlScript = fs.readFileSync(path.join(__dirname, '..', 'database', 'init.sql')).toString();
+            scripts = sqlScript.split(";")
+            scripts.forEach(script => {
+                script = script.replace(/\n/g, '')
+                if (script) {
+                    db.query(script, (err, results) => {
+                        if (err) {
+                            console.error('Failed when execute script', err);
+                        }
+                    });
+                }
+
+            });
+            console.log('Connected to MySQL Database');
         }
-    });
-
-
-    db.query('USE ooad', (err) => {
-        if (err) {
-            console.error('Error:', err);
-            return;
-        }
-    });
-    const sqlScript = fs.readFileSync(path.join(__dirname, '..', 'database', 'init.sql')).toString();
-    scripts = sqlScript.split(";")
-    scripts.forEach(script => {
-        script = script.replace(/\n/g, '')
-    if (script){    db.query(script, (err, results) => {
-    if (err) {
-      console.error('Failed when execute script', err);
-    }  });}
-    
-});
-
-});
-
+    });  
+}
+connect_db();
 module.exports = db;
