@@ -16,13 +16,9 @@ exports.getSelling = (req, res) => {
     });
 };
 exports.getBuying = (req, res) => {
-    db.query('SELECT * FROM user_follow WHERE user_id = ?', [req.params.id], (err, results) => {
-        if (err) return res.status(500).json({ error: 'Database error' });
-        
-        db.query('SELECT * FROM auction_products WHERE owner_id = ?', [req.params.id], (err, results) => {
+    db.query('SELECT * FROM user_follow INNER JOIN auction_products ON user_follow.auction_id = auction_products.id WHERE user_id = ?', [req.params.id], (err, results) => {
         if (err) return res.status(500).json({ error: 'Database error' });
         res.json(results);
-    });
     });
 };
 

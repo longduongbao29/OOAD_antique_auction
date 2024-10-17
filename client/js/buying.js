@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <p>Current bid: $${product.current_bid}</p>
                     <p>${time_remain} </p>
                     <button data-id="${product.id}" class="bid-btn">View</button>
-                    <button data-id="${product.id}" class="delete-btn">Delete</button>
+                   
                 `;
                 productList.appendChild(productDiv);
                 const bidButtons = document.querySelectorAll('.bid-btn');
@@ -69,26 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Lấy tất cả các nút delete
                 
             });
-
-               const deleteButtons = document.querySelectorAll('.delete-btn');
-
-                // Gắn sự kiện click cho mỗi nút
-                deleteButtons.forEach(button => {
-                button.addEventListener('click', function(event) {
-                    const productId = this.getAttribute('data-id');
-                    
-                    // Hiển thị hộp thoại xác nhận
-                    const confirmDelete = confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?');
-
-                    if (confirmDelete) {
-                        console.log("delete");
-                        
-                        delete_auctions(productId);
-                        window.location.reload();
-                    } 
-                });
-
-            });
+       
         })
         .catch(error => console.error('Error fetching products:', error));
     
