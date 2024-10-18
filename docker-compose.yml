@@ -11,7 +11,7 @@ services:
       MYSQL_USER: admin
       MYSQL_PASSWORD: adminpassword
     ports:
-      - 3306:3306
+      - 3307:3306
     networks:
       - my_network
     volumes:

@@ -1,1 +1,1 @@
-docker build -t ooad/server .
+docker build -t gitlab/ooad/server .
